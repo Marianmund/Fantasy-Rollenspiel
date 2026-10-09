@@ -1,15 +1,21 @@
-src package Helden.Waffen;
+package Helden.Waffen;
 
 public class Held {
+	private String name;
 	private int gesundheit;
 	private int schaden;
-	private final Waffe[] inventar = new Waffe[3];
+	private Waffe[] inventar = new Waffe[3];
 	private int anzahlWaffen;
-	
 
 	public Held(int gesundheit, int schaden) {
 		this.gesundheit = gesundheit;
 		this.schaden = schaden;
+	}
+
+	public Held(int gesundheit, int schaden, String name) {
+		this.gesundheit = gesundheit;
+		this.schaden = schaden;
+		this.name = name;
 	}
 
 	public int getGesundheit() {
@@ -18,6 +24,14 @@ public class Held {
 
 	public int getSchaden() {
 		return schaden;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public boolean waffeAufnehmen(Wartebank wartebank) {
@@ -51,4 +65,6 @@ public class Held {
 		}
 		gesundheit = Math.max(0, gesundheit - schaden);
 	}
+
+	public 
 }

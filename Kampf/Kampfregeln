@@ -1,1 +1,5 @@
-// keine leben, Objekte erzeugen, arrray anlegen, auf würfel zugreifen 
+package Held.Kampf;
+
+public class Kampfregeln {
+    
+}
