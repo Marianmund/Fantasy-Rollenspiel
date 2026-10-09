@@ -1,6 +1,7 @@
 package Kampf;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import Helden.Waffen.Held;
 
@@ -10,7 +11,7 @@ public class HeldenUndMonsterService {
 
     public HeldenUndMonsterService(){
         Helden[0] = new Held(100, 10, "Frank der Rächer der Kontenaks");
-        Helden[1] = new Held(100, 10, "Gert der Weisse Ritter");
+        Helden[1] = new Held(100, 10, "Gerd der Weisse Ritter");
         Helden[2] = new Held(100, 10, "Klaus Nikolaus der Schreckliche Weyand");
     }
 
@@ -18,13 +19,19 @@ public class HeldenUndMonsterService {
         int auswahl = -1;
         do {
             System.out.printf("\n\n\n\n\n\n\n");
-            System.out.printf("Wähle deinen Helden!: \n");
-            for (int i = 1; i < Helden.length; i++) {
-                System.out.printf("\n\n Held Nr. %d: %s\n", i + 1, Helden[i].getName());
-                System.out.printf("HP: %d\n", Helden[i].getGesundheit());
-                System.out.printf("Schaden: %d\n", Helden[i].getSchaden());
+            System.out.printf("Wähle deinen Helden!: \n \n \n");
+
+            Sleep(1);
+
+            for (int i = 1; i <= Helden.length; i++) {
+                System.out.printf("Held Nr. %d: %s\n", i, Helden[i - 1].getName());
+                System.out.printf("HP: %d\n", Helden[i - 1].getGesundheit());
+                System.out.printf("Schaden: %d\n", Helden[i - 1].getSchaden());
                 System.out.printf("\n\n");
 
+                Sleep(1); // Sleep for 1 second between each hero display
+            }
+            
                 // Eingabe entscheidet welcher Held ausgewählt wird   
                 try {
                     System.out.printf("Gib die Nummer des Helden ein, den du auswählen möchtest: ");
@@ -39,14 +46,19 @@ public class HeldenUndMonsterService {
                     input.nextLine();
                     auswahl = -1; // Loop restarten bei ungültiger Eingabe
                 }
-            }
+            input.close();
         } while (auswahl < 1 || auswahl > Helden.length);
 
         // return selected Hero
         return Helden[auswahl - 1];
     }
 
-
-
+    public static void Sleep(int seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 
 }

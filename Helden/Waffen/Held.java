@@ -66,5 +66,5 @@ public class Held {
 		gesundheit = Math.max(0, gesundheit - schaden);
 	}
 
-	public 
+	
 }
