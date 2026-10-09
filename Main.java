@@ -1,6 +1,8 @@
 
 import Helden.Waffen.Held;
 import Kampf.HeldenUndMonsterService;
+import Kampf.Wuerfel;
+
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +12,9 @@ public class Main {
     public static Scanner input = new Scanner(System.in);
 
     public static boolean gameIsActive;
+
+    public Wuerfel d20 = new Wuerfel(20);
+    public Wuerfel d6 = new Wuerfel(6);
 
     public static void main(String[] args) {
         // Spiel starten mit "Loading Screen" (falls man das so nennen kann...)
