@@ -1,18 +1,22 @@
 package Kampf;
 
+import Helden.Waffen.Held;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import Helden.Waffen.Held;
-
 public class HeldenUndMonsterService {
     protected Held[] Helden = new Held[3];
+    
+
     Scanner input = new Scanner(System.in);
 
     public HeldenUndMonsterService(){
+        // Standard Helden
         Helden[0] = new Held(100, 10, "Frank der Rächer der Kontenaks");
         Helden[1] = new Held(100, 10, "Gerd der Weisse Ritter");
         Helden[2] = new Held(100, 10, "Klaus Nikolaus der Schreckliche Weyand");
+
+        // Standard Monster in Wellen
     }
 
     public Held selectHeld(){
@@ -37,16 +41,16 @@ public class HeldenUndMonsterService {
                     System.out.printf("Gib die Nummer des Helden ein, den du auswählen möchtest: ");
                     auswahl = input.nextInt();
                     if (auswahl < 1 || auswahl > Helden.length) {
-                        System.out.printf("Ungültige Auswahl. Bitte wähle eine Zahl zwischen 1 und %d.\n", Helden.length);
+                        System.out.printf("\n\nUngültige Auswahl. Bitte wähle eine Zahl zwischen 1 und %d.\n", Helden.length);
                         auswahl = -1; // Loop restarten bei ungültiger Eingabe     
-                        break;
+                        Sleep(1);
                     }
                 } catch (Exception e) {
-                    System.out.printf("Ungültige Eingabe. Bitte gib eine Zahl ein!\n");
+                    System.out.printf("\n\nUngültige Eingabe. Bitte gib eine Zahl ein!\n");
+                    Sleep(1);
                     input.nextLine();
                     auswahl = -1; // Loop restarten bei ungültiger Eingabe
                 }
-            input.close();
         } while (auswahl < 1 || auswahl > Helden.length);
 
         // return selected Hero
