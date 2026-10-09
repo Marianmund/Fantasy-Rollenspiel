@@ -1,5 +1,5 @@
 package Held.Kampf;
 
-public class Kampfregeln {
+public class KampfService {
     
 }
