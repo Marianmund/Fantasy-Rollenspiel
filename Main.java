@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     public static Scanner input = new Scanner(System.in);
 
+    public static HeldenUndMonsterService service;
     public static boolean gameIsActive;
 
     public static void main(String[] args) throws InterruptedException {
@@ -51,7 +52,7 @@ public class Main {
     // ruft auch KampfService auf, um den Kampf zwischen Helden und Monstern zu starten
     public static void Spiel(){
         // Heldenauswahl
-        var service = new HeldenUndMonsterService(input);
+        service = new HeldenUndMonsterService(input);
 
         service.setHeld(service.selectHeld());
 
