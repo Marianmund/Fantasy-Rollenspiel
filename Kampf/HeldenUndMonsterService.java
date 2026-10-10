@@ -1,17 +1,29 @@
 package Kampf;
 
 import Helden.Waffen.Held;
+import Monster.Monster;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+
+// Zusatz für uns: Wenn Monster tot muss auf jeden Fall eine Random Waffe mit 
+// Random Schaden gedroppt werden,
+// Welche dem Schaden gewisse Punkte hinzufügt
+// Jede Waffe im Inventar fügt Schaden hinzu ohne dass man sie 
+// aktiv auswählen muss
 public class HeldenUndMonsterService {
+    protected Monster[] Orcs = new Monster[5];
+    protected Monster[] Skellette = new Monster[5];
+    protected Monster[] Lehrer = new Monster[5];
+    protected Monster[] Schueler = new Monster[5];
+
     protected Held[] Helden = new Held[3];
     protected Held Held;
     private final Scanner input;
 
     public HeldenUndMonsterService(Scanner input) {
         this.input = input;
-        
+
         // Standard Helden
         Helden[0] = new Held(300, 35, "Frank der Rächer der Kontenaks");
         Helden[1] = new Held(100, 60, "Gerd der Weisse Ritter");

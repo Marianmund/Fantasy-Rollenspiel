@@ -2,18 +2,19 @@
 package Helden.Waffen;
 
 public class Schwert extends Waffe {
-    private int schaden;
+    private final int schaden;
 
     public Schwert(String name, int magie, String seltenheit, int schaden) {
         super(name, magie, seltenheit);
         this.schaden = schaden;
     }
 
+    @Override
     public int getSchaden() {
         return schaden;
     }
-    @Override
-
+    
+    @Override 
     public int bonusBerechnen() {
         if (this.getMagie() != 0) {
             int gesamtschaden = this.getMagie() * getSchaden();

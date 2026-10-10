@@ -14,7 +14,7 @@ public class KampfService {
 
         Sleep(1);
 
-        int damage = (int) Math.ceil((d20.wuerfeln() * held.getSchaden()) / 5.0);
+        int damage = (int) Math.ceil((d20.wuerfeln() * held.getSchaden()) / 5.0 + held.getInventar()[1].getSchaden());
         
         Sleep(1);
 

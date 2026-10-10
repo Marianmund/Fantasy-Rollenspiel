@@ -1,9 +1,9 @@
 package Monster;
 
 public class Monster {
-    private String name;
-    private int leben;
-    private int schaden;
+    private final String name;
+    private final int leben;
+    private final int schaden;
 
     public Monster(String name, int leben, int schaden) {
         this.name = name;
@@ -21,6 +21,10 @@ public class Monster {
 
     public int getSchaden() {
         return schaden;
+    }
+
+    public String getArt() {
+        return "Monster";
     }
 
     public void keineLeben() {

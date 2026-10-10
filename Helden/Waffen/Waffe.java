@@ -1,14 +1,12 @@
 package Helden.Waffen;
 
 public abstract class Waffe {
-	private String name;
-	private int magie;
-    private String seltenheit;
+	private final String name;
+	private final int magie;
 
 	public Waffe(String name, int magie, String seltenheit) {
 		this.name = name;
 		this.magie = magie;
-		this.seltenheit = seltenheit;
 	}
 
 	public String getName() {

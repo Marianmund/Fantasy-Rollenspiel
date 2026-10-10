@@ -15,6 +15,8 @@ public class Main {
 
         startScreen();
 
+
+        // Spiellogik und Gewinn Counter
         do {
             boolean gewonnen; 
             
@@ -105,6 +107,8 @@ public class Main {
     // Möchte Spieler erneut spielen? (y/n) - return true/false
     public static boolean erneutSpielen() {
         while (true) {
+            input.nextLine();
+
             System.out.print("\nMöchtest du erneut spielen? (y/n): ");
 
             String answer = input.nextLine().trim().toLowerCase();

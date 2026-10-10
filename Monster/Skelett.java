@@ -1,14 +1,16 @@
 package Monster;
 
-public class Skellett extends Monster {
-    private int schaden;
-
-    public Skellett(String name, int leben, int schaden) {
-        super(name, leben, schaden);
-        this.schaden = schaden;
+public class Skelett extends Monster {
+    public Skelett(String name, int leben) {
+        super(name, leben, 12);
     }
 
-    public int getSchaden() {
-        return schaden;
+    public Skelett(String name, int leben, int schaden) {
+        super(name, leben, schaden);
+    }
+
+    @Override
+    public String getArt() {
+        return "Skelett";
     }
 }
