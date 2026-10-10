@@ -1,5 +1,4 @@
 import Kampf.HeldenUndMonsterService;
-import Kampf.Wuerfel;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -10,25 +9,20 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         // Spiel starten mit "Loading Screen" (falls man das so nennen kann...)
-        Wuerfel d20 = new Wuerfel(2);
 
-        d20.wuerfeln();
+        startScreen();
 
-
-
-        // startScreen();
-
-        // do {
+        do {
             
-        //     // Spielgeschehen
-        //     Spiel();
+            // Spielgeschehen
+            Spiel();
 
-        //     // Spieler wird gefragt, ob er erneut spielen möchte
-        //     gameIsActive = erneutSpielen();
+            // Spieler wird gefragt, ob er erneut spielen möchte
+            gameIsActive = erneutSpielen();
 
-        // } while (gameIsActive == true);
+        } while (gameIsActive == true);
 
-        // input.close();
+        input.close();
     }
 
 
