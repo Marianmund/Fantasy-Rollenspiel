@@ -11,17 +11,42 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         // Spiel starten mit "Loading Screen" (falls man das so nennen kann...)
 
+        GlücksspielService GSS = new GlücksspielService();
+
         startScreen();
 
         do {
+            boolean gewonnen; 
             
             // Spielgeschehen
-            Spiel();
+            gewonnen = Spiel();
+
+            if (gewonnen == true){
+                GSS.Siege++;
+                gameIsActive = erneutSpielen();
+            } else {
+                GSS.Siege = 0;
+                gameIsActive = false;
+            }
 
             // Spieler wird gefragt, ob er erneut spielen möchte
-            gameIsActive = erneutSpielen();
+            
+            
 
         } while (gameIsActive == true);
+
+
+
+        // Geld Ausgabe
+        System.out.println("\n\n####################\n");
+        Sleep(2);
+        System.out.println("Eingezahlt: " + GSS.getGeldEin());
+        Sleep(1);
+        System.out.println("Ausgezahlt: " + GSS.calculateGeldAus(GSS.Siege));
+        Sleep(1);
+        System.out.println("Gewinn: " + (GSS.calculateGeldAus(GSS.Siege) - GSS.getGeldEin()));
+        Sleep(1);
+        System.out.println("\n####################\n");
 
         input.close();
     }
@@ -50,8 +75,10 @@ public class Main {
 
     // gesamtes Spielgeschehen findet hier statt 
     // ruft auch KampfService auf, um den Kampf zwischen Helden und Monstern zu starten
-    public static void Spiel(){
+    // gibt true zurück falls gewonnen, false bei Niederlage
+    public static boolean  Spiel(){
         // Heldenauswahl
+        boolean gewonnen;
         service = new HeldenUndMonsterService(input);
 
         service.setHeld(service.selectHeld());
@@ -59,6 +86,19 @@ public class Main {
         Sleep(1);
 
         System.out.println("Gewaehlter Held: " + service.getHeld().getName());
+
+
+
+        // Gewonnen? -> ausgabe
+
+        // noch nciht implementiert
+        if (true){
+            gewonnen = true;
+        } else {
+            gewonnen = false;
+        }
+
+        return gewonnen;
     }
 
 
@@ -84,11 +124,8 @@ public class Main {
                     Sleep(1);
                     System.out.println("Vielen Dank fürs Spielen!\n\n");
                     Sleep(1);
-                    System.out.println("Das Spiel wird beendet...\n\n");
-                    Sleep(1);
                     System.out.println("Auf Wiedersehen!\n\n");
                     Sleep(1);
-                    System.exit(0);
                     return false;
                 }
                 default -> System.out.println(
