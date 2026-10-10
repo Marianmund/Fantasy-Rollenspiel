@@ -1,36 +1,34 @@
-
-import Helden.Waffen.Held;
 import Kampf.HeldenUndMonsterService;
 import Kampf.Wuerfel;
-
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
-
 
 public class Main {
     public static Scanner input = new Scanner(System.in);
 
     public static boolean gameIsActive;
 
-    public Wuerfel d20 = new Wuerfel(20);
-    public Wuerfel d6 = new Wuerfel(6);
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // Spiel starten mit "Loading Screen" (falls man das so nennen kann...)
-        startScreen();
+        Wuerfel d20 = new Wuerfel(2);
 
-        do {
+        d20.wuerfeln();
+
+
+
+        // startScreen();
+
+        // do {
             
-            // Spielgeschehen
-            Spiel();
+        //     // Spielgeschehen
+        //     Spiel();
 
-            // Spieler wird gefragt, ob er erneut spielen möchte
-            gameIsActive = erneutSpielen();
+        //     // Spieler wird gefragt, ob er erneut spielen möchte
+        //     gameIsActive = erneutSpielen();
 
-        } while (gameIsActive == true);
+        // } while (gameIsActive == true);
 
-        input.close();
+        // input.close();
     }
 
 
@@ -59,7 +57,7 @@ public class Main {
     // ruft auch KampfService auf, um den Kampf zwischen Helden und Monstern zu starten
     public static void Spiel(){
         // Heldenauswahl
-        var service = new HeldenUndMonsterService();
+        var service = new HeldenUndMonsterService(input);
 
         service.setHeld(service.selectHeld());
 

@@ -1,14 +1,42 @@
-package Held.Kampf;
+package Kampf;
 
 import Helden.Waffen.Held;
-import Monster.Monster;
+import java.util.concurrent.TimeUnit;
 
 // verschiedene Würfel für versch. Kampfmechaniken
 
 
 public class KampfService {
-    public static void startKampf(Held held, Monster monster) {
-        System.out.println("Der Kampf beginnt zwischen " + held.getName() + " und " + monster.getName() + "!");
-        // Hier können Sie die Kampfmechanik implementieren
+    public static int  SchadenMachen(Held held) throws InterruptedException {
+        Wuerfel d20 = new Wuerfel(20);
+        
+        System.out.printf("%d greift an!" + held.getName());
+
+        Sleep(1);
+
+        int damage = (d20.wuerfeln() * held.getSchaden()) / 5;
+
+        Sleep(1);
+
+
+        return damage;
     }
+
+
+
+/*
+* add. Methods
+*/
+
+    // Pause für eine bestimmte Anzahl von Sekunden
+    public static void Sleep(int seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+
+
 }

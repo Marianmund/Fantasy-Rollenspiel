@@ -1,4 +1,4 @@
-src package Monster
+package Monster;
 
 public class Orcs extends Monster {
     private int schaden;

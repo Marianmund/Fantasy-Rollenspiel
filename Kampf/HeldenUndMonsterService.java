@@ -6,17 +6,29 @@ import java.util.concurrent.TimeUnit;
 
 public class HeldenUndMonsterService {
     protected Held[] Helden = new Held[3];
-    
+    protected Held Held;
+    private final Scanner input;
 
-    Scanner input = new Scanner(System.in);
-
-    public HeldenUndMonsterService(){
+    public HeldenUndMonsterService(Scanner input) {
+        this.input = input;
+        
         // Standard Helden
-        Helden[0] = new Held(100, 10, "Frank der Rächer der Kontenaks");
-        Helden[1] = new Held(100, 10, "Gerd der Weisse Ritter");
-        Helden[2] = new Held(100, 10, "Klaus Nikolaus der Schreckliche Weyand");
+        Helden[0] = new Held(300, 35, "Frank der Rächer der Kontenaks");
+        Helden[1] = new Held(100, 60, "Gerd der Weisse Ritter");
+        Helden[2] = new Held(200, 45, "Klaus Nikolaus der Schreckliche Weyand");
 
         // Standard Monster in Wellen
+    }
+
+    public void setHeld(Held Held){
+        this.Held = Held;
+    }
+
+    public Held getHeld(){
+        if (this.Held == null){
+            this.Held = Helden[0];
+        }
+        return this.Held;
     }
 
     public Held selectHeld(){

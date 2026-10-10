@@ -1,5 +1,5 @@
 
-src package Helden.Waffen;
+package Helden.Waffen;
 
 public class Morgenstern extends Waffe {
     private int schaden;

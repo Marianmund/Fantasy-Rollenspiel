@@ -1,5 +1,5 @@
 
-src package Helden.Waffen;
+package Helden.Waffen;
 
 public class Kanone extends Waffe {
     private int schaden;

@@ -1,4 +1,4 @@
-src package Monster
+package Monster;
 
 public class Monster {
     private String name;
@@ -28,3 +28,4 @@ public class Monster {
             System.out.println(name + " ist tot!");
         }
     }
+}

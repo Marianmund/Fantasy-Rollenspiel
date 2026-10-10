@@ -1,4 +1,4 @@
-src package Helden.Waffen;
+package Helden.Waffen;
 
 public abstract class Waffe {
 	private String name;
@@ -29,6 +29,5 @@ public abstract class Waffe {
 			System.out.println("Die Waffe " + this.name + " hat keinen Magiebonus.");
 			return getSchaden();
 		}
-		return 0;
 	}
 }
