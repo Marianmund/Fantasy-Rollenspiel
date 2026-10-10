@@ -61,11 +61,11 @@ public class Main {
         // Heldenauswahl
         var service = new HeldenUndMonsterService();
 
-        Held Held = service.selectHeld();
+        service.setHeld(service.selectHeld());
 
         Sleep(1);
 
-        System.out.println("Gewaehlter Held: " + Held.getName());
+        System.out.println("Gewaehlter Held: " + service.getHeld().getName());
     }
 
 
