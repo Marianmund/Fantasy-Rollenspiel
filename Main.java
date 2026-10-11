@@ -11,7 +11,9 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         // Spiel starten mit "Loading Screen" (falls man das so nennen kann...)
 
-        GlücksspielService GSS = new GlücksspielService();
+        // Glüücksspielservice mit Dialog aktiviert; 
+        // Abfrage Geld einzahlen findet auch statt
+        GlücksspielService GSS = new GlücksspielService(input);
 
         startScreen();
 
@@ -23,17 +25,18 @@ public class Main {
             // Spielgeschehen
             gewonnen = Spiel();
 
-            if (gewonnen == true){
+            if (gewonnen){
                 GSS.Siege++;
+                Sleep(1);
+                System.out.println("\n\nDu hast gewonnen!!!");
+                Sleep(1);
+                System.out.printf("Dein Geld: %d\n", GSS.calculateGeldAus(GSS.Siege));
+                Sleep(1);
                 gameIsActive = erneutSpielen();
             } else {
                 GSS.Siege = 0;
                 gameIsActive = false;
             }
-
-            // Spieler wird gefragt, ob er erneut spielen möchte
-            
-            
 
         } while (gameIsActive == true);
 
@@ -78,9 +81,9 @@ public class Main {
     // gesamtes Spielgeschehen findet hier statt 
     // ruft auch KampfService auf, um den Kampf zwischen Helden und Monstern zu starten
     // gibt true zurück falls gewonnen, false bei Niederlage
-    public static boolean  Spiel(){
+    public static boolean Spiel() throws InterruptedException{
         // Heldenauswahl
-        boolean gewonnen;
+  
         service = new HeldenUndMonsterService(input);
 
         service.setHeld(service.selectHeld());
@@ -89,16 +92,72 @@ public class Main {
 
         System.out.println("Gewaehlter Held: " + service.getHeld().getName());
 
+        System.out.println();
+        Sleep(1);
+        System.out.println();
+        Sleep(1);
 
+        // Tür öffnen: Welche Monster kommen? (Pseudo Auswahl)
+        System.out.println("Du stehst vor drei Türen!");
+        Sleep(1);
 
+        int tür = -1;
+        do {
+            System.out.print("Welche möchtest du öffnen? (1/2/3): ");
+            String eingabe = input.nextLine().trim();
+
+            try {
+                tür = Integer.parseInt(eingabe);
+            } catch (NumberFormatException e) {
+                System.out.println("Eingabe muss eine Zahl sein!");
+                tür = -1;
+            }
+
+            if (tür < 1 || tür > 3) {
+                System.out.println("Eingabe muss 1, 2 oder 3 sein!");
+            }
+        } while (tür < 1 || tür > 3);
+
+        Sleep(1);
+        System.out.println("Du gehst durch Tür Nr. " + tür + "!");
+        Sleep(1);
+        service.setMonster();
+        System.out.println();
+        System.out.printf("Vor dir steht eine Horde von %s!%n%n", service.getMonsterTyp());
+        Sleep(1);
+        
+
+        do {
+            int MonsterPos = 0;
+            service.MonsterAusgeben();
+
+            // ? Welches Monster wird angegriffen?
+            do {
+                System.out.print("Welches Monster möchtest du angreifen?: ");
+                String monsterEingabe = input.nextLine().trim();
+
+                try {
+                    MonsterPos = Integer.parseInt(monsterEingabe);
+                    System.out.println();
+                } catch (NumberFormatException e) {
+                    System.out.println("Eingabe muss eine Zahl sein!");
+                    MonsterPos = -1;
+                }
+
+                if (MonsterPos < 1 || MonsterPos > service.getMonsterLength()) {
+                    System.out.printf("Eingabe muss zwischen 1 und %d liegen! ", service.getMonsterLength());
+                }
+            } while (MonsterPos < 1 || MonsterPos > service.getMonsterLength());
+            
+            // Kampf wird ausgeführt
+            service.Kampf(MonsterPos - 1);
+        } while (service.getHeld().getGesundheit() > 0 && service.hasMonsters());
+        
+        
+        
+        boolean gewonnen;
         // Gewonnen? -> ausgabe
-
-        // noch nciht implementiert
-        if (true){
-            gewonnen = true;
-        } else {
-            gewonnen = false;
-        }
+        gewonnen = service.getHeld().getGesundheit() > 0;
 
         return gewonnen;
     }
@@ -107,8 +166,6 @@ public class Main {
     // Möchte Spieler erneut spielen? (y/n) - return true/false
     public static boolean erneutSpielen() {
         while (true) {
-            input.nextLine();
-
             System.out.print("\nMöchtest du erneut spielen? (y/n): ");
 
             String answer = input.nextLine().trim().toLowerCase();

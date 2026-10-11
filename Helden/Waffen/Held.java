@@ -1,7 +1,7 @@
 package Helden.Waffen;
 
-import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Held {
 	private String name;
@@ -26,6 +26,10 @@ public class Held {
 
 	public int getSchaden() {
 		return schaden;
+	}
+
+	public void setGesundheit(int gesundheit){
+		this.gesundheit = gesundheit;
 	}
 
 	public String getName() {
@@ -65,7 +69,7 @@ public class Held {
 	// Waffenmanagement
 	// Waffe wird hinzugefügt, falls Inventar nicht voll
 	// Wenn es voll ist: Spieler wird gefragt ob und welche er ersetzen möchte
-	public void addWaffe(Waffe waffe) {
+	public void addWaffe(Waffe waffe, Scanner input) {
 		if (this.getInventar().length < 3) {
 			inventar[this.getInventar().length] = waffe;
 		} else {
@@ -74,8 +78,6 @@ public class Held {
 			System.out.println("Inventar ist voll. \n\n");
 			Sleep(1);
 			System.out.println("Möchtest du eine Waffe ersetzen? (y/n): ");
-			Scanner input = new Scanner(System.in);
-
 			String answer;
 
 			do {
@@ -100,16 +102,15 @@ public class Held {
 
 					// checken welche Waffe ersetzt werden soll
 					try {
-						replaceIndex = input.nextInt() - 1;
+						replaceIndex = Integer.parseInt(input.nextLine().trim()) - 1;
 
 						if (replaceIndex < 0 || replaceIndex >= inventar.length) {
 							System.out.println("Ungültige Auswahl. Bitte wähle eine Zahl zwischen 1 und " + inventar.length + ".");
 							replaceIndex = -1; // Loop restarten bei ungültiger Eingabe
 						}
-					} catch (Exception e) {
+					} catch (NumberFormatException e) {
 						System.out.println("Ungültige Eingabe. Bitte gib eine Zahl ein!");
 						replaceIndex = -1; // Loop restarten bei ungültiger Eingabe
-						input.nextLine(); // ungültige Eingabe verwerfen
 					}
 				} while (replaceIndex < 0 || replaceIndex >= inventar.length);
 
@@ -122,7 +123,6 @@ public class Held {
 				System.out.println("Waffe abgelehnt.");
 			}
 		
-			input.close();
 		}
 		
 		// Inventar wird zurückgegeben

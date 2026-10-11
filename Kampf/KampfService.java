@@ -1,20 +1,34 @@
 package Kampf;
 
 import Helden.Waffen.Held;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 // verschiedene Würfel für versch. Kampfmechaniken
 
 
 public class KampfService {
-    public static int  SchadenMachen(Held held) throws InterruptedException {
-        Wuerfel d20 = new Wuerfel(20);
-        
-        System.out.printf("%d greift an!" + held.getName());
+    private final Scanner input;
+
+    public KampfService(Scanner input) {
+        this.input = input;
+    }
+
+    public int  SchadenMachen(Held held) throws InterruptedException {
+        Wuerfel d20 = new Wuerfel(20, input);
+
+        System.out.printf("%s greift an!%n", held.getName());
 
         Sleep(1);
 
-        int damage = (int) Math.ceil((d20.wuerfeln() * held.getSchaden()) / 5.0 + held.getInventar()[1].getSchaden());
+        int weaponBonus = 0;
+        for (var weapon : held.getInventar()) {
+            if (weapon != null) {
+                weaponBonus += weapon.getSchaden();
+            }
+        }
+
+        int damage = (int) Math.ceil((d20.wuerfeln() * held.getSchaden()) / 5.0 + weaponBonus);
         
         Sleep(1);
 

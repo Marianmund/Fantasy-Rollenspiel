@@ -16,16 +16,16 @@ public class Wuerfel {
 
     // Würfel mit einer bestimmten Anzahl von Seiten
     private final int seiten;
+    private final Scanner input;
 
-    public Wuerfel(int seiten) {
+    public Wuerfel(int seiten, Scanner input) {
         this.seiten = seiten;
+        this.input = input;
     }
 
     // Methode zum Würfeln
     public int wuerfeln() throws InterruptedException{
         
-        Scanner enter = new Scanner(System.in);
-
         int ergebnis = 0;
         int wurf;
 
@@ -34,7 +34,7 @@ public class Wuerfel {
 
         do {
             System.out.printf("\nDrücke enter um zu würfeln! ");
-            enter.nextLine();
+            input.nextLine();
 
             wurf = (int) (Math.random() * seiten) + 1;
 
@@ -79,7 +79,6 @@ public class Wuerfel {
 
         System.out.println("\n");
 
-        enter.close();
         return ergebnis;
     }
 

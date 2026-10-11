@@ -4,12 +4,15 @@ import java.util.concurrent.TimeUnit;
 public class GlücksspielService {
     int geldEin = 0;
     int Siege = 0;
+    private final Scanner input;
 
-    public GlücksspielService() {
+    public GlücksspielService(Scanner input) {
+        this.input = input;
         this.geldEin = printGlücksspielInfo();
     }
 
     public GlücksspielService(int geldEin){
+        this.input = null;
         this.geldEin = geldEin;
     }
 
@@ -22,10 +25,9 @@ public class GlücksspielService {
     }
 
     public int  printGlücksspielInfo(){
-        Scanner input = new Scanner(System.in);
         int in = 0;
 
-        System.out.println("####################\n");
+        System.out.println("\n\n\n####################\n");
         Sleep(1);
         System.out.println("Hinweise zum verantwortungsvollen Umgang mit Spielangeboten:");
         System.out.println("Wer merkt, dass ein Spiel plötzlich mehr nach Abenteuer klingt als nach Spaß, sollte kurz innehalten und realisieren: Das Leben ist kein Casino mit Bonuslevel.");
@@ -53,6 +55,8 @@ public class GlücksspielService {
             }
         }
         System.out.println("\n####################\n\n\n");
+
+        Sleep(5);
 
         return in;
     }
