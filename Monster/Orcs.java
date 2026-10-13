@@ -16,7 +16,7 @@ public class Orcs extends Monster {
     }
 
     public Orcs(String name, int leben, int schaden) {
-        super(name, leben - 20, schaden - 1);
+        super(name, leben - 20, schaden + 5);
     }
 
 

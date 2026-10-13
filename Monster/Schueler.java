@@ -19,7 +19,7 @@ public class Schueler extends Monster {
     }
 
     public Schueler(String name, int leben, int schaden) {
-        super(name, leben + 30, schaden - 4);
+        super(name, leben + 40, schaden - 2);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         // Spiel starten mit "Loading Screen" (falls man das so nennen kann...)
 
-        // Glüücksspielservice mit Dialog aktiviert; 
+        // Glücksspielservice mit Dialog aktiviert; 
         // Abfrage Geld einzahlen findet auch statt
         GlücksspielService GSS = new GlücksspielService(input);
 

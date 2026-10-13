@@ -196,7 +196,7 @@ public final class HeldenUndMonsterService {
         if (hasMonsters()){
             int[] schadenMonsterIndex = new int[selectedMonster.length];
             for (int i = 0; i < schadenMonsterIndex.length; i++){
-                schadenMonsterIndex[i] = (int) (Math.random() * 9) - 3;
+                schadenMonsterIndex[i] = (int) (Math.random() * 13) - 7;
                 
                 if (selectedMonster[i].getSchaden() + schadenMonsterIndex[i] < 0) {
                     schadenMonsterIndex[i] = -selectedMonster[i].getSchaden();

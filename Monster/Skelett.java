@@ -18,7 +18,7 @@ public class Skelett extends Monster {
     }
 
     public Skelett(String name, int leben, int schaden) {
-        super(name, leben - 40, schaden + 4);
+        super(name, leben - 40, schaden + 6);
     }
 
     @Override

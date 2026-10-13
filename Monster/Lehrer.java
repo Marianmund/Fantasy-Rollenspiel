@@ -17,7 +17,7 @@ public class Lehrer extends Monster {
     }
 
     public Lehrer(String name, int leben, int schaden) {
-        super(name, leben - 8, schaden - 3);
+        super(name, leben - 8, schaden + 3);
     }
 
     @Override
